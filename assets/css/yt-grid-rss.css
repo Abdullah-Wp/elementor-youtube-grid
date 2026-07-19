@@ -1,0 +1,220 @@
+/* Core Grid Layout Structure */
+.yt-grid {
+    box-sizing: border-box;
+    display: grid !important;
+    grid-template-columns: repeat(var(--desktop-cols, 3), 1fr) !important;
+}
+
+@media (max-width: 1024px) {
+    .yt-grid {
+        grid-template-columns: repeat(var(--tablet-cols, var(--desktop-cols, 3)), 1fr) !important;
+    }
+}
+
+@media (max-width: 767px) {
+    .yt-grid {
+        grid-template-columns: repeat(var(--mobile-cols, var(--tablet-cols, 3)), 1fr) !important;
+    }
+}
+
+/* Individual Grid Card Item Container */
+.yt-grid .yt-item {
+    position: relative;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.yt-grid .yt-item a {
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.yt-grid .yt-item img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    transition: transform 0.35s ease;
+}
+
+/* Fluid Aspect-Ratio Containers (Prevents Cumulative Layout Shift - CLS) */
+.yt-ratio-16-9 {
+    padding-bottom: 56.25% !important; /* 16:9 ratio */
+}
+
+.yt-ratio-4-3 {
+    padding-bottom: 75% !important; /* 4:3 ratio */
+}
+
+.yt-ratio-1-1 {
+    padding-bottom: 100% !important; /* 1:1 Square */
+}
+
+.yt-standard-ratio-wrapper {
+    position: relative;
+    width: 100%;
+    height: 0;
+    overflow: hidden;
+}
+
+.yt-standard-ratio-wrapper img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* Lazy Load Styling Rules */
+.yt-lazy-placeholder {
+    position: relative;
+    width: 100%;
+    height: 0;
+    overflow: hidden;
+    box-sizing: border-box;
+    background-color: #f0f0f0;
+    transition: background-color 0.3s ease;
+}
+
+.yt-lazy-placeholder img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.35s ease-in-out;
+}
+
+.yt-lazy-placeholder.yt-loaded img {
+    opacity: 1;
+}
+
+.yt-lazy-loader-wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Custom CSS Spin Animation Rules */
+.yt-grid-spinner {
+    animation: yt-grid-spin 1.2s linear infinite;
+    display: inline-block;
+    line-height: 1;
+}
+
+.yt-grid-spinner i,
+.yt-grid-spinner svg {
+    display: block;
+    width: 1em;
+    height: 1em;
+}
+
+@keyframes yt-grid-spin {
+    100% { transform: rotate(360deg); }
+}
+
+/* Card Hover Zoom Effects */
+.yt-thumb-wrapper {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.yt-item:hover .yt-thumb-wrapper img {
+    transform: scale(1.05);
+}
+
+/* Play Button Hover overlay configurations */
+.yt-play-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    opacity: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 3;
+    transition: opacity 0.3s ease;
+}
+
+.yt-item:hover .yt-play-overlay {
+    opacity: 1;
+}
+
+.yt-play-icon {
+    font-size: 40px;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease;
+    line-height: 1;
+}
+
+.yt-play-icon svg {
+    width: 1em;
+    height: 1em;
+}
+
+.yt-item:hover .yt-play-icon {
+    transform: scale(1.15);
+}
+
+/* Text Truncation Line-Clamping Rules */
+.yt-item .yt-title {
+    margin: 8px 0 0;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.4;
+    color: #333333;
+    word-break: break-word;
+}
+
+.yt-item .yt-title.yt-truncate {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.yt-item .yt-title.line-clamp-1 {
+    -webkit-line-clamp: 1;
+}
+
+.yt-item .yt-title.line-clamp-2 {
+    -webkit-line-clamp: 2;
+}
+
+.yt-item .yt-title.line-clamp-3 {
+    -webkit-line-clamp: 3;
+}
+
+/* Metadata Text Elements */
+.yt-meta-pub {
+    margin: 4px 0 0;
+    font-size: 12px;
+    color: #888888;
+}
+
+.yt-meta-desc {
+    margin: 6px 0 0;
+    font-size: 13px;
+    color: #666666;
+    line-height: 1.5;
+}
