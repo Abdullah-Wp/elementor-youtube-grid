@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: Elementor YouTube Grid (RSS)
-Plugin URI: https://www.abdullahwp.com
+Plugin URI: https://abdullahwp.com/elementor-youtube-grid-rss/
 Description: Display latest YouTube videos from a channel or playlist using RSS feed with advanced controls, built-in lightboxes, and modern caching parameters.
 Version: 1.3
 Author: AbdullahWP
